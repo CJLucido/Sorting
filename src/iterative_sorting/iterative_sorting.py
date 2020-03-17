@@ -16,13 +16,14 @@ def selection_sort( arr ):
             #assume current number is smallest, 
            
             j = i+1
-            while j in range(i+1, len(arr)): #DOES include the very last one because we need to check it's value against everything that comes before it, not including it here would make it so that we didn't compare 8 to 7 and it would think it was done with 8,9, (invisible) 7
+            while j in range(i+1, +\
+                len(arr)): #DOES include the very last one because we need to check it's value against everything that comes before it, not including it here would make it so that we didn't compare 8 to 7 and it would think it was done with 8,9, (invisible) 7
                 smallest = arr[i]
 
                 if smallest <= arr[j]: #smallest less than the next_number
                     j +=1 
                 else:
-
+                    #order matters
                     smallest = arr[j]
                     arr[j] = arr[i]  
                     arr[i] = smallest
