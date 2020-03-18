@@ -7,22 +7,35 @@ def merge( arrA, arrB ):
     j=0
     k=0
     for k in range(0,len(merged_arr)):
-        if (i < len(arrA)) and arrA[i] < arrB[j]:
+        print(k)
+        if (i < len(arrA)) and (len(arrA)>0)and (len(arrB) > 0) and (j < len(arrB)) and arrA[i] < arrB[j]: 
             merged_arr[k] = arrA[i]
             i += 1
             k += 1
-            #print(merged_arr)
-        elif (j < len(arrB)):
+            print(i)
+            print(k)
+            print(merged_arr)
+        elif (j < len(arrB)) and (len(arrB) > 0)and (len(arrA)>0) and (i < len(arrA))  and arrA[i] > arrB[j]:
             merged_arr[k] = arrB[j]
             j += 1
             k += 1
-        else:
-            return
+            print(k)
+
+        elif (j < len(arrB)) and (len(arrB) > 0) and (i == len(arrA)):
+            merged_arr[k] = arrB[j]
+            j+=1
+            print(k)
+
+        elif (i < len(arrA)) and (len(arrA)>0) and (j == len(arrB)):
+            merged_arr[k] =  arrA[i]
+            i += 1
+            print(k)
+
 
     return merged_arr
 
-arr = merge([50,0,3], [66,7,90])
-print(arr)
+arr = merge([50,1,3], [6,2,88])
+
 # TO-DO: implement the Merge Sort function below USING RECURSION
 def merge_sort( arr ):
 
@@ -30,20 +43,14 @@ def merge_sort( arr ):
     if len(arr)> 1:
         datasubset_1 = arr[0:int((len(arr)/2))] #start to half
         datasubset_2 = arr[int((len(arr)/2)):] #half to end
-        merge_sort(datasubset_1)
-        merge_sort(datasubset_2)    
-    
-        merge(datasubset_1, datasubset_2)
+        data1 = merge_sort(datasubset_1)
+        data2 = merge_sort(datasubset_2)   
+
+        if len(data1) >= 1 and len(data2) >= 1:
+            arr = merge(data1, data2)
         
-
-        print(arr)
-
-    elif len(arr) == 1:
-        return arr
-
     
     return arr
-
 
 # STRETCH: implement an in-place merge sort algorithm
 def merge_in_place(arr, start, mid, end):
